@@ -1,17 +1,17 @@
 use bevy::prelude::*;
 
 //link our modules to our project
-pub mod game;
 pub mod alien;
-pub mod resolution;
+pub mod game;
 pub mod player;
 pub mod projectile;
+pub mod resolution;
+
 fn main() {
     App::new()
-        .add_plugins(
-            (
-                //list of plugins added to the game
-                DefaultPlugins
+        .add_plugins((
+            //list of plugins added to the game
+            DefaultPlugins
                 .set(WindowPlugin {
                     primary_window: Some(Window {
                         title: String::from("Space Invaders"),
@@ -22,10 +22,7 @@ fn main() {
                     ..Default::default()
                 })
                 .set(ImagePlugin::default_nearest()),
-
-                game::GamePlugin,
-            ),
-            
-        )
+            game::GamePlugin,
+        ))
         .run();
 }
