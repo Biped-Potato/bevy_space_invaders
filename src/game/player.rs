@@ -26,20 +26,15 @@ fn setup_player(
     commands.spawn((
         SpriteBundle {
             texture: player_image,
-            transform: Transform::from_xyz(
-                0.,
-                -(resolution.screen_dimensions.y * 0.5) + (resolution.pixel_ratio * 5.0),
-                0.,
-            )
-            .with_scale(Vec3::splat(resolution.pixel_ratio)),
+            transform: Transform::from_xyz(0., -(resolution.screen_dimensions.y * 0.5) + 5.0, 0.),
             ..Default::default()
         },
         Player { shoot_timer: 0. },
     ));
 }
 
-const SPEED: f32 = 200.;
-const BULLET_SPEED: f32 = 400.;
+const SPEED: f32 = 100.;
+const BULLET_SPEED: f32 = 200.;
 const SHOOT_COOLDOWN: f32 = 0.5;
 
 fn update_player(
@@ -84,8 +79,7 @@ fn update_player(
         commands.spawn((
             SpriteBundle {
                 texture: bullet_texture,
-                transform: Transform::from_translation(transform.translation)
-                    .with_scale(Vec3::splat(resolution.pixel_ratio)),
+                transform: Transform::from_translation(transform.translation),
                 ..Default::default()
             },
             projectile::Projectile {

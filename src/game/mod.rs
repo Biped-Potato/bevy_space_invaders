@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, render::camera::ScalingMode};
 
 mod alien;
 mod player;
@@ -19,6 +19,17 @@ impl Plugin for GamePlugin {
     }
 }
 
-fn setup_scene(mut commands: Commands) {
-    commands.spawn(Camera2dBundle { ..default() });
+fn setup_scene(mut commands: Commands, resolution: Res<resolution::Resolution>) {
+    commands.spawn(Camera2dBundle {
+        projection: OrthographicProjection {
+            far: 1000.,
+            near: -1000.,
+            scaling_mode: ScalingMode::AutoMin {
+                min_width: resolution.screen_dimensions.x,
+                min_height: resolution.screen_dimensions.y,
+            },
+            ..default()
+        },
+        ..default()
+    });
 }

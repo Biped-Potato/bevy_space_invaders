@@ -13,16 +13,10 @@ impl Plugin for ResolutionPlugin {
 pub struct Resolution {
     //pixel dimensions of our screen in the form of a 2d vector (width,height)
     pub screen_dimensions: Vec2,
-    //the ratio of a pixel in our sprites to one on screen
-    pub pixel_ratio: f32,
 }
 
-fn setup_resolution(mut commands: Commands, window_query: Query<&Window>) {
-    //query for window information
-    let window = window_query.single();
-
+fn setup_resolution(mut commands: Commands) {
     commands.insert_resource(Resolution {
-        screen_dimensions: Vec2::new(window.width(), window.height()),
-        pixel_ratio: 2.0,
+        screen_dimensions: Vec2::splat(256.), //game field size (will scale to window size)
     });
 }

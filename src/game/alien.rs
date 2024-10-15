@@ -37,9 +37,9 @@ pub struct AlienManager {
 //width and height represent the amount of aliens horizontally and vertically which we wish to spawn
 const WIDTH: i32 = 10;
 const HEIGHT: i32 = 5;
-const SPACING: f32 = 24.;
-const SPEED: f32 = 100.0;
-const ALIEN_SHIFT_AMOUNT: f32 = 32.;
+const SPACING: f32 = 12.;
+const SPEED: f32 = 50.0;
+const ALIEN_SHIFT_AMOUNT: f32 = 16.;
 
 //spawn our aliens
 fn setup_aliens(
@@ -58,14 +58,13 @@ fn setup_aliens(
     for x in 0..WIDTH {
         for y in 0..HEIGHT {
             let position = Vec3::new(x as f32 * SPACING,y as f32 * SPACING, 0.)
-                - (Vec3::X * WIDTH as f32 *SPACING * 0.5) //Center the aliens on the x axis
-                - (Vec3::Y * HEIGHT as f32 * SPACING * 1.0) //Displace the aliens below the x axis so that we can displace them to the top of the screen in the next line
+                - (Vec3::X * WIDTH as f32 * SPACING * 0.5) //Center the aliens on the x axis
+                - (Vec3::Y * HEIGHT as f32 * SPACING) //Displace the aliens below the x axis so that we can displace them to the top of the screen in the next line
                 + (Vec3::Y * resolution.screen_dimensions.y * 0.5); //Displace the aliens to the top of the screen
             commands.spawn((
                 SpriteBundle {
                     //splat just creates a vector with 3 of the same value
-                    transform: Transform::from_translation(position)
-                        .with_scale(Vec3::splat(resolution.pixel_ratio)),
+                    transform: Transform::from_translation(position),
                     texture: alien_texture.clone(),
                     ..default()
                 },

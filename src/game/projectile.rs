@@ -30,7 +30,7 @@ fn update_projectiles(
     }
 }
 
-const BULLET_RADIUS: f32 = 24.;
+const BULLET_RADIUS: f32 = 12.;
 
 //activate death for aliens and such
 fn update_alien_interactions(
