@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::resolution;
+use super::resolution;
 
 pub struct AlienPlugin;
 

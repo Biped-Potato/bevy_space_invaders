@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{alien, resolution};
+use super::{alien, resolution};
 
 pub struct ProjectilePlugin;
 

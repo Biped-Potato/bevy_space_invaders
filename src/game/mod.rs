@@ -1,6 +1,9 @@
 use bevy::prelude::*;
 
-use crate::{alien, player, projectile, resolution};
+mod alien;
+mod player;
+mod projectile;
+mod resolution;
 
 pub struct GamePlugin;
 

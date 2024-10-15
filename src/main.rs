@@ -1,11 +1,7 @@
 use bevy::prelude::*;
 
-//link our modules to our project
-pub mod alien;
+//link game module to our project
 pub mod game;
-pub mod player;
-pub mod projectile;
-pub mod resolution;
 
 fn main() {
     App::new()
