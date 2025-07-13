@@ -21,5 +21,5 @@ impl Plugin for GamePlugin {
     }
 }
 fn setup_scene(mut commands: Commands) {
-    commands.spawn(Camera2dBundle { ..default() });
+    commands.spawn(Camera2d::default());
 }

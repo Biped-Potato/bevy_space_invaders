@@ -23,7 +23,7 @@ fn update_projectiles(
 ){
     for(entity,projectile,mut transform) in projectile_query.iter_mut()
     {
-        transform.translation.y += projectile.speed * time.delta_seconds();
+        transform.translation.y += projectile.speed * time.delta_secs();
         if transform.translation.y > resolution.screen_dimensions.y * 0.5
         {
             commands.entity(entity).despawn();

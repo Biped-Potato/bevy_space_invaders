@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-
 use crate::resolution;
 
 pub struct AlienPlugin;
@@ -59,12 +58,14 @@ fn setup_aliens(mut commands : Commands,asset_server : Res<AssetServer>,resoluti
                 - (Vec3::Y * HEIGHT as f32 * SPACING * 1.0) //Displace the aliens below the x axis so that we can displace them to the top of the screen in the next line
                 + (Vec3::Y * resolution.screen_dimensions.y * 0.5); //Displace the aliens to the top of the screen
             commands.spawn((
-                SpriteBundle{
-                    //splat just creates a vector with 3 of the same value
-                    transform : Transform::from_translation(position).with_scale(Vec3::splat(resolution.pixel_ratio)),
-                    texture : alien_texture.clone(),
-                    ..default()
+                // Sprite now owns its texture handle
+                Sprite {
+                    image: alien_texture.clone(),
+                    ..Default::default()
                 },
+                // your old Transform + scale
+                Transform::from_translation(position)
+                    .with_scale(Vec3::splat(resolution.pixel_ratio)),
                 Alien{
                     original_position : position,
                     dead : false,
@@ -88,7 +89,7 @@ fn update_aliens(
     for(entity,alien,mut transform,mut visibility) in alien_query.iter_mut()
     {
         //delta_seconds makes it so our aliens move at the same speed regardless of framerate; delta_seconds() gives the time between each frame.
-        transform.translation.x += time.delta_seconds() * alien_manager.direction * SPEED;
+        transform.translation.x += time.delta_secs() * alien_manager.direction * SPEED;
         if transform.translation.x.abs() > resolution.screen_dimensions.x * 0.5 {
             alien_manager.shift_aliens_down = true;
             alien_manager.dist_from_boundary = resolution.screen_dimensions.x * alien_manager.direction * 0.5 - transform.translation.x; //calculates the delta x we need to move the alien to get it back into our bounds
