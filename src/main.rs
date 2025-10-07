@@ -16,7 +16,7 @@ fn main() {
                     primary_window: Some(Window {
                         title: String::from("Space Invaders"),
                         position: WindowPosition::Centered(MonitorSelection::Primary),
-                        resolution: Vec2::new(512., 512.).into(),
+                        resolution: (512, 512).into(),
                         ..Default::default()
                     }),
                     ..Default::default()
