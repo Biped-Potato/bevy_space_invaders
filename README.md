@@ -4,4 +4,5 @@ This project is made for Bevy 0.14.2 and was created for an educational Youtube 
 
 Full Tutorial: https://youtu.be/PDa88vDY7O0
 
-Update on 2025 July 15th: Make the code compatible with bevy v0.16.1.
+Update on 2025 July 15th: Make the code compatible with bevy v0.16.1.  
+Update on 2025 October 17th: Make the code compatible with bevy v0.17.2.   

@@ -50,8 +50,11 @@ fn update_alien_interactions(
             );
             if Vec2::distance(alien_pos,projectile_pos) < BULLET_RADIUS{
                 alien.dead = true;
-                //best to not despawn in the query but the warning doesn't break the game so I don't mind too much
-                commands.entity(projectile_entity).despawn();
+                commands
+                    .entity(projectile_entity)
+                    .queue_silenced(|entity: EntityWorldMut| entity.despawn());
+
+                break;
             }
         }
     }
